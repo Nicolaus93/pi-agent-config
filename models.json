@@ -1,0 +1,91 @@
+{
+  "providers": {
+    "llama-local": {
+      "baseUrl": "http://127.0.0.1:8080/v1",
+      "api": "openai-completions",
+      "apiKey": "local",
+      "compat": {
+        "supportsDeveloperRole": false,
+        "supportsReasoningEffort": false,
+        "supportsUsageInStreaming": false,
+        "maxTokensField": "max_tokens"
+      },
+      "models": [
+        {
+          "id": "qwen3.5-9b",
+          "name": "Qwen3.5 9B IQ4_XS (local, fast)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "thinkingFormat": "qwen-chat-template"
+          }
+        },
+        {
+          "id": "qwen3-coder-30b",
+          "name": "Qwen3-Coder 30B-A3B IQ2_M (local)",
+          "reasoning": false,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 32768,
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          }
+        },
+        {
+          "id": "qwen3.8-27b",
+          "name": "Qwen3.8 27B IQ3_XXS (local)",
+          "reasoning": true,
+          "input": [
+            "text"
+          ],
+          "contextWindow": 65536,
+          "maxTokens": 8192,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "thinkingFormat": "qwen-chat-template"
+          }
+        },
+        {
+          "id": "unsloth/Qwen3.6-35B-A3B-GGUF:UD-Q3_K_XL",
+          "name": "Qwen3.6 35B A3B UD-Q3_K_XL (local)",
+          "reasoning": true,
+          "input": [
+            "text",
+            "image"
+          ],
+          "contextWindow": 32768,
+          "maxTokens": 4096,
+          "cost": {
+            "input": 0,
+            "output": 0,
+            "cacheRead": 0,
+            "cacheWrite": 0
+          },
+          "compat": {
+            "thinkingFormat": "qwen-chat-template"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "servers": [
+    {
+      "id": "pyright",
+      "enabled": true,
+      "include": ["**/*.py", "**/*.pyi"],
+      "rootMarkers": ["pyproject.toml", "setup.py", "requirements.txt"],
+      "bin": "pyright-langserver",
+      "args": ["--stdio"],
+      "cwd": "{root}",
+      "languageIdByExtension": {
+        ".py": "python",
+        ".pyi": "python"
+      },
+      "startupTimeoutMs": 45000,
+      "diagnosticsWaitMs": 2000,
+      "initializationOptions": {},
+      "settings": {}
+    }
+  ]
+}

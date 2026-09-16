@@ -1,0 +1,13 @@
+{
+  "lastChangelogVersion": "0.83.0",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.6-sol",
+  "defaultThinkingLevel": "medium",
+  "theme": "dark",
+  "packages": [
+    "npm:pi-mcp-adapter",
+    "npm:pi-lsp",
+    "git:github.com/HazAT/pi-interactive-subagents",
+    "git:github.com/pasky/chrome-cdp-skill@v1.1.0"
+  ]
+}

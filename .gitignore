@@ -1,0 +1,17 @@
+# Allowlist: ignore everything by default, then un-ignore only the
+# shareable config. This makes it impossible for `git add -A` to stage
+# auth.json, session history, caches, or vendored packages.
+*
+
+!.gitignore
+!README.md
+!settings.json
+!models.json
+!lsp.json
+!AGENTS.md
+
+!agents/
+!agents/*.md
+
+!extensions/
+!extensions/*.ts
