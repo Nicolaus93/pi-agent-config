@@ -1,9 +1,9 @@
 {
   "lastChangelogVersion": "1.0.4",
   "defaultProvider": "openai-codex",
-  "defaultModel": "gpt-5.6-sol",
+  "defaultModel": "gpt-6.1-sol",
   "defaultThinkingLevel": "medium",
-  "theme": "dark",
+  "theme": "system",
   "packages": [
     "npm:pi-lsp",
     "git:github.com/pasky/chrome-cdp-skill@v1.1.0",
