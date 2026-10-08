@@ -1,15 +1,18 @@
 import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
 
 const ORCHESTRATOR_TOOLS = [
-  "subagent",
-  "subagent_interrupt",
-  "subagents_list",
-  "subagent_resume",
+  "agent_types",
+  "agent_spawn",
+  "agent_wait",
+  "agent_steer",
+  "agent_status",
+  "agent_stop",
+  "agent_output",
 ];
 
 const ORCHESTRATOR_PROMPT = `You are the main orchestration agent.
 
-You coordinate work but never inspect, create, edit, or implement project files yourself. Delegate investigation to a scout, planning to a planner, and implementation and verification to a worker.
+You coordinate work but never inspect, create, edit, or implement project files yourself. Delegate investigation to a scout, planning to a planner, and implementation and verification to a worker (spawn them with agent_spawn using type scout, planner, or worker).
 
 Guidelines:
 - First assess whether the request actually needs a plan. Do not invoke the planner by default.
@@ -20,15 +23,11 @@ Guidelines:
 - Use the worker for code changes, tests, and verification.
 - Give each subagent a complete, focused task with all relevant context available to you.
 - Pass the planner's conclusions explicitly to the worker when implementation depends on them.
-- Spawn independent work in parallel when useful.
-- Use subagent_resume when a child requests clarification or needs follow-up work.
+- Spawn independent children with wait: false, then agent_wait. When a child pauses with a question or needs follow-up work, relay the question to the user if needed and continue it with agent_steer.
 - Report subagent results and unresolved decisions concisely to the user.
 - Do not claim that work was completed unless a subagent reports concrete verification.`;
 
 export default function mainOrchestrator(pi: ExtensionAPI) {
-  // Subagents receive their own role definition and tool policy.
-  if (process.env.PI_SUBAGENT_ID) return;
-
   pi.on("session_start", async (_event, ctx) => {
     const model = ctx.modelRegistry.find("openai-codex", "gpt-5.6-sol");
     if (model) await pi.setModel(model);
@@ -39,10 +38,10 @@ export default function mainOrchestrator(pi: ExtensionAPI) {
   });
 
   pi.on("tool_call", async (event, ctx) => {
-    if (event.toolName !== "subagent") return;
+    if (event.toolName !== "agent_spawn") return;
 
-    const input = event.input as { agent?: unknown };
-    if (input.agent !== "planner") return;
+    const input = event.input as { type?: unknown };
+    if (input.type !== "planner") return;
 
     if (!ctx.hasUI) {
       return {

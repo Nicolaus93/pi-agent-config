@@ -18,7 +18,7 @@ If `~/.pi/agent` already exists, clone elsewhere and copy the files in:
     cp -r /tmp/pi-agent-config/{settings.json,models.json,lsp.json,AGENTS.md,agents,extensions} ~/.pi/agent/
 
 Then start `pi`. The packages listed in `settings.json` (`pi-mcp-adapter`,
-`pi-lsp`, `pi-interactive-subagents`, `chrome-cdp-skill`) are fetched
+`pi-lsp`, `pi-subagent-manager`, `chrome-cdp-skill`) are fetched
 automatically on first run — no vendored `npm/` or `git/` directories needed.
 
 ## What's here
@@ -26,8 +26,9 @@ automatically on first run — no vendored `npm/` or `git/` directories needed.
 | Path                          | What it does |
 |-------------------------------|--------------|
 | `settings.json`               | Default provider/model, theme, package list |
-| `agents/`                     | Subagent role definitions (pi-agent, planner, scout, worker, reviewer, visual-tester) |
-| `extensions/main-orchestrator.ts` | Forces the main session into orchestrator-only mode: it may only call subagent tools, never edit files itself. Also prompts for confirmation before starting a planning session. |
+| `subagent-manager/agents/`    | Subagent role definitions (pi-agent, planner, scout, worker, reviewer) for pi-subagent-manager |
+| `subagent-manager/settings.json` | pi-subagent-manager settings (orchestration mode, model/tool filtering) |
+| `extensions/main-orchestrator.ts` | Forces the main session into orchestrator-only mode: it may only call the `agent_*` tools, never edit files itself. Also prompts for confirmation before starting a planning session. |
 | `extensions/disable-amazon-bedrock.ts` | Hides the built-in Bedrock models from the catalog |
 | `models.json`                 | Local llama.cpp provider (Qwen3.x GGUF builds) |
 | `lsp.json`                    | pyright language server for Python projects |
@@ -39,7 +40,7 @@ automatically on first run — no vendored `npm/` or `git/` directories needed.
    (`gpt-5.6-sol`, `gpt-5.6-luna`, `gpt-6-astra` for the planner). You need that
    provider authenticated. To use a different provider, change it in **three**
    places: `settings.json` (`defaultProvider` / `defaultModel`), the `model:`
-   frontmatter in each `agents/*.md`, and the hardcoded
+   frontmatter in each `subagent-manager/agents/*.md`, and the hardcoded
    `modelRegistry.find("openai-codex", "gpt-5.6-sol")` in
    `extensions/main-orchestrator.ts`.
 

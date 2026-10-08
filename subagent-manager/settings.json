@@ -1,0 +1,5 @@
+{
+  "subagentMode": "orchestration",
+  "modelSelection": "pick-first-available",
+  "toolFiltering": "allowed"
+}

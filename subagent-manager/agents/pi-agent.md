@@ -1,10 +1,26 @@
 ---
 name: pi-agent
 description: Self-driving Pi session for deep investigation, experimentation, and code exploration
-model: openai-codex/gpt-5.6-sol
-auto-exit: true
-spawning: false
-deny-tools: claude
+models:
+  - openai-codex/gpt-6.1-sol
+thinkingLevel: medium
+color: accent
+tools:
+  allow:
+    - read
+    - bash
+    - grep
+    - find
+    - ls
+    - write
+    - edit
+    - lsp_diagnostics
+    - lsp_hover
+    - lsp_definition
+    - lsp_references
+    - lsp_symbols
+    - agent_update
+    - agent_pause
 ---
 
 # Pi Agent

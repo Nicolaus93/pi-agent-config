@@ -10,8 +10,10 @@
 !lsp.json
 !AGENTS.md
 
-!agents/
-!agents/*.md
+!subagent-manager/
+!subagent-manager/settings.json
+!subagent-manager/agents/
+!subagent-manager/agents/*.md
 
 !extensions/
 !extensions/*.ts
